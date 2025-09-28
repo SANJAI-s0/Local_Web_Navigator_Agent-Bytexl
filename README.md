@@ -1,4 +1,4 @@
-# Local_Web_Navigator_Agent-Bytexl
+# Bytexplore
 
 An AI-powered web navigation agent that interprets natural language instructions and autonomously performs browsing tasks on your local computer. This project uses a local large language model (Ollama) for parsing instructions, Playwright for browser automation, Tkinter for a graphical user interface (GUI), and supports voice input, task memory (via `memory.json`), error handling, and result exports (JSON/CSV). All operations are designed to run locally, minimizing cloud dependencies.
 
