@@ -1,0 +1,5 @@
+# Minimal requirements (use pip to install)
+playwright
+streamlit
+gpt4all
+pytest
