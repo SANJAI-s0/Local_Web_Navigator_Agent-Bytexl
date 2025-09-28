@@ -3,3 +3,4 @@ playwright
 speechrecognition
 pyttsx3
 pytest
+pytest-mock

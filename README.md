@@ -147,7 +147,7 @@ Run unit tests to verify functionality:
 cd Z:\git_bytexl_hackathon\webagent
 .\venv\Scripts\activate
 $env:OLLAMA_HOST="127.0.0.1:11435"
-pytest tests/
+python -m pytest tests/
 ```
 
 - Expected output will show test results. Fix any import errors by ensuring `tests/test_agent.py` and `tests/test_browser_controller.py` import from `webagent.agent` and `webagent.browser_controller`.

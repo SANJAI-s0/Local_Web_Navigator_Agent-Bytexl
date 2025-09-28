@@ -1,6 +1,8 @@
+# tests/test_agent.py
 import pytest
 import json
 import os
+import webagent.agent as agent_module
 from webagent.agent import WebNavigatorAgent
 
 @pytest.fixture
@@ -11,16 +13,20 @@ def agent(tmp_path):
     agent.load_memory()
     yield agent
 
-def test_parse_instruction(agent, mocker):
-    """Test instruction parsing (mock Ollama)."""
-    mocker.patch('webagent.agent.ollama.chat', return_value={
+def test_parse_instruction(agent, monkeypatch):
+    """Test instruction parsing (mock Ollama) using monkeypatch."""
+    fake_response = {
         'message': {
             'content': json.dumps({
                 "steps": ["Navigate to https://www.google.com", "Type 'test' in search box"],
                 "extraction": "titles and links"
             })
         }
-    })
+    }
+
+    # monkeypatch the ollama.chat function used inside webagent.agent
+    monkeypatch.setattr(agent_module.ollama, "chat", lambda *args, **kwargs: fake_response)
+
     plan = agent.parse_instruction("search for test")
     assert plan["steps"] == ["Navigate to https://www.google.com", "Type 'test' in search box"]
     assert plan["extraction"] == "titles and links"
