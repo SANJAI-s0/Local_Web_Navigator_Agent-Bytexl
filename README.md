@@ -167,6 +167,39 @@ pytest tests/
 - `results.json`, `results.csv`: Output files (auto-created).
 - `.venv/`: Virtual environment directory.
 
+## Task Allocation for our "The One" Team of 5 Members
+
+### Jacob Antony: Project Lead and Team Management
+**Responsibilities:**
+- Oversee the overall project progress and coordinate with the team.
+- Maintain and enhance webagent/agent.py (e.g., refine the parse_instruction and execute_plan methods for better accuracy and error handling).
+- Ensure the integration of memory.json for task history works seamlessly.
+- Address any syntax errors (e.g., the recent SyntaxError fix) and optimize for low-memory systems (e.g., switch between tinyllama and phi3 based on RAM availability).
+
+### Member 2:  Core Logic Developer and Browser Automation
+**Responsibilities:**
+- Manage webagent/browser_controller.py to improve browser automation (e.g., add support for more websites by expanding map_selector).
+- Enhance the Tkinter GUI in webagent/main.py (e.g., add buttons for saving/export options or a status bar).
+- Debug browser-related issues (e.g., set headless=False for visual troubleshooting).
+
+### Member 3: UI Developer and Designs
+**Responsibilities:**
+- Develop and maintain test cases in tests/test_agent.py and tests/test_browser_controller.py.
+- Run pytest tests/ to ensure functionality after code changes.
+- Identify and report bugs, especially related to memory constraints or Ollama integration.
+
+### Member 4: Documentation and Support
+**Responsibilities:**
+- Maintain and update the README.md with new features, troubleshooting tips, or team contributions.
+- Assist with setup documentation for team members (e.g., clarify Ollama port 11435 setup).
+- Support deployment by documenting environment-specific steps (e.g., page file adjustment for low RAM).
+
+### Member 5:  Testing, Quality Assurance and Additional Features
+**Responsibilities:**
+- Implement and test voice input functionality in webagent/main.py (e.g., ensure speech_recognition and PyAudio work).
+- Explore additional features like offline voice recognition (e.g., integrating Vosk) or result visualization.
+- Assist with dependency installation troubleshooting (e.g., PyAudio or portaudio issues).
+
 ## Usage
 1. Run the application as described in Step 6.
 2. Enter a command in the GUI (e.g., "search for laptops under 50k and list top 5").
@@ -196,39 +229,6 @@ pytest tests/
   ```
 - **Memory Issues**: Increase page file or use `tinyllama` if `phi3` fails.
 - **Parsing Errors**: Ensure Ollama server is running and the model is loaded before starting `main.py`.
-
-## Task Allocation for our "The One" Team of 5 Members
-
-### Member 1: Project Lead and Core Logic Developer
-**Responsibilities:**
-- Oversee the overall project progress and coordinate with the team.
-- Maintain and enhance webagent/agent.py (e.g., refine the parse_instruction and execute_plan methods for better accuracy and error handling).
-- Ensure the integration of memory.json for task history works seamlessly.
-- Address any syntax errors (e.g., the recent SyntaxError fix) and optimize for low-memory systems (e.g., switch between tinyllama and phi3 based on RAM availability).
-
-### Member 2: Browser Automation and UI Developer
-**Responsibilities:**
-- Manage webagent/browser_controller.py to improve browser automation (e.g., add support for more websites by expanding map_selector).
-- Enhance the Tkinter GUI in webagent/main.py (e.g., add buttons for saving/export options or a status bar).
-- Debug browser-related issues (e.g., set headless=False for visual troubleshooting).
-
-### Member 3: Testing and Quality Assurance
-**Responsibilities:**
-- Develop and maintain test cases in tests/test_agent.py and tests/test_browser_controller.py.
-- Run pytest tests/ to ensure functionality after code changes.
-- Identify and report bugs, especially related to memory constraints or Ollama integration.
-
-### Member 4: Documentation and Deployment Support
-**Responsibilities:**
-- Maintain and update the README.md with new features, troubleshooting tips, or team contributions.
-- Assist with setup documentation for team members (e.g., clarify Ollama port 11435 setup).
-- Support deployment by documenting environment-specific steps (e.g., page file adjustment for low RAM).
-
-### Member 5: Voice Input and Additional Features
-**Responsibilities:**
-- Implement and test voice input functionality in webagent/main.py (e.g., ensure speech_recognition and PyAudio work).
-- Explore additional features like offline voice recognition (e.g., integrating Vosk) or result visualization.
-- Assist with dependency installation troubleshooting (e.g., PyAudio or portaudio issues).
 
 ## Contributing
 Fork the repository, make changes, and submit a pull request. Issues and suggestions are welcome!
