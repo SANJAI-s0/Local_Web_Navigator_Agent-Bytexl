@@ -1,5 +1,5 @@
-# Minimal requirements (use pip to install)
+ollama
 playwright
-streamlit
-gpt4all
+speechrecognition
+pyttsx3
 pytest

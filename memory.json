@@ -1,0 +1,12 @@
+[
+  {
+    "instruction": "search for laptops under 50k and list top 5",
+    "plan": "{\"steps\": [], \"extraction\": \"\"}",
+    "timestamp": "2025-09-28T14:20:44.515005"
+  },
+  {
+    "instruction": "search for laptops under 50k and list top 5",
+    "plan": "{\"steps\": [], \"extraction\": \"\"}",
+    "timestamp": "2025-09-28T14:23:33.419860"
+  }
+]
