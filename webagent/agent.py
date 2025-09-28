@@ -59,8 +59,8 @@ class WebNavigatorAgent:
         Output as JSON.
         """
         try:
-            # Wait for server to initialize
-            time.sleep(5)
+            # Increased delay to ensure server initialization
+            time.sleep(10)
             response = ollama.chat(
                 model='tinyllama',
                 messages=[{'role': 'user', 'content': prompt}],
