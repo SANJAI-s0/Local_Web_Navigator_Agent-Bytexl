@@ -19,6 +19,8 @@ This agent allows users to input commands like "search for laptops under 50k and
 - Voice input support (requires microphone and internet for speech recognition).
 - Compatible with Python 3.10+ (tested on 3.12.8).
 
+---
+
 ## Prerequisites
 - **Operating System**: Windows 11 (tested on Asus Vivobook X1500EA).
 - **Python**: Version 3.10 or higher (recommended 3.12.8).
@@ -27,6 +29,8 @@ This agent allows users to input commands like "search for laptops under 50k and
 - **Storage**: ~10 GB free space for models and dependencies.
 - **Internet**: Required for initial setup, model download, and web tasks.
 - **Microphone**: Optional, for voice input (requires PyAudio and portaudio dependencies).
+
+---
 
 ## Setup Instructions
 
@@ -152,6 +156,8 @@ pytest tests/
 
 - Expected output will show test results. Fix any import errors by ensuring `tests/test_agent.py` and `tests/test_browser_controller.py` import from `webagent.agent` and `webagent.browser_controller`.
 
+---
+
 ## Project Structure
 - `webagent/`
   - `__init__.py`: Marks `webagent` as a package.
@@ -167,38 +173,47 @@ pytest tests/
 - `results.json`, `results.csv`: Output files (auto-created).
 - `.venv/`: Virtual environment directory.
 
+---
+
 ## Task Allocation for our "The One" Team of 5 Members
 
 ### Jacob Antony: Project Lead and Team Management
 **Responsibilities:**
-- Oversee the overall project progress and coordinate with the team.
-- Maintain and enhance webagent/agent.py (e.g., refine the parse_instruction and execute_plan methods for better accuracy and error handling).
-- Ensure the integration of memory.json for task history works seamlessly.
-- Address any syntax errors (e.g., the recent SyntaxError fix) and optimize for low-memory systems (e.g., switch between tinyllama and phi3 based on RAM availability).
+- Oversee project direction, ensuring alignment with the hackathon problem statement and deadlines.
+- Coordinate task allocation, monitor progress, and facilitate communication among team members.
+- Resolve blockers, manage time effectively, and liaise with the hackathon platform for submissions.
+- Maintain the GitHub repository’s hackathon_branch, ensuring all members are collaborators.
+- Finalize and submit the project (Title, Summary, GitHub URL, Video Link) by 8:00 PM IST.
 
-### Member 2:  Core Logic Developer and Browser Automation
+### Sanjai: Core Logic Developer and Browser Automation
 **Responsibilities:**
-- Manage webagent/browser_controller.py to improve browser automation (e.g., add support for more websites by expanding map_selector).
-- Enhance the Tkinter GUI in webagent/main.py (e.g., add buttons for saving/export options or a status bar).
-- Debug browser-related issues (e.g., set headless=False for visual troubleshooting).
+- Develop and optimize the core logic in webagent/agent.py, including instruction parsing and plan execution using Ollama on port 11435.
+- Enhance webagent/browser_controller.py to improve browser automation with Playwright, expanding website support and error handling.
+- Troubleshoot parsing errors (e.g., Expecting value) and ensure seamless integration with the UI and memory.json.
+- Collaborate with the testing lead to validate logic and automation workflows.
 
-### Member 3: UI Developer and Designs
+### Madhumitha: UI Developer and Designs
 **Responsibilities:**
-- Develop and maintain test cases in tests/test_agent.py and tests/test_browser_controller.py.
-- Run pytest tests/ to ensure functionality after code changes.
-- Identify and report bugs, especially related to memory constraints or Ollama integration.
+- Design and implement an intuitive Tkinter GUI in webagent/main.py, ensuring a user-friendly interface for input and result display.
+- Create visual elements, such as layouts and styling, to enhance user experience and presentation quality.
+- Integrate voice input functionality and export options (JSON/CSV) into the UI.
+- Work with the core logic developer to align UI actions with backend processes.
 
-### Member 4: Documentation and Support
+### Gayathri: Documentation and Support
 **Responsibilities:**
-- Maintain and update the README.md with new features, troubleshooting tips, or team contributions.
-- Assist with setup documentation for team members (e.g., clarify Ollama port 11435 setup).
-- Support deployment by documenting environment-specific steps (e.g., page file adjustment for low RAM).
+- Maintain and update README.md with detailed setup instructions, architecture, and troubleshooting guides.
+- Document the solution overview, technology stack, and implementation plan as per the hackathon submission template.
+- Provide support to team members on environment setup (e.g., Ollama, Python 3.12.8) and dependency issues.
+- Assist in preparing the project summary and video pitch content.
 
-### Member 5:  Testing, Quality Assurance and Additional Features
+### Ghobika: Testing, Quality Assurance and Additional Features
 **Responsibilities:**
-- Implement and test voice input functionality in webagent/main.py (e.g., ensure speech_recognition and PyAudio work).
-- Explore additional features like offline voice recognition (e.g., integrating Vosk) or result visualization.
-- Assist with dependency installation troubleshooting (e.g., PyAudio or portaudio issues).
+- Develop and execute test cases in tests/test_agent.py and tests/test_browser_controller.py to ensure functionality and reliability.
+- Validate performance metrics, identify bugs (e.g., memory constraints), and suggest improvements.
+- Explore and implement additional features, such as offline voice recognition or multi-browser support.
+- Collaborate with the UI developer to test integrated components and ensure quality standards.
+
+---
 
 ## Usage
 1. Run the application as described in Step 6.
@@ -209,16 +224,22 @@ pytest tests/
    browser = BrowserController(headless=False)
    ```
 
+---
+
 ## Customization
 - Extend selectors in `webagent/agent.py` for additional websites.
 - Add new actions in `webagent/browser_controller.py`.
 - For offline voice input, replace `recognize_google` with Vosk (requires additional setup).
+
+---
 
 ## Limitations
 - Extraction may fail if website layouts change (update selectors).
 - Voice input requires internet (Google API).
 - Best suited for simple tasks; complex sites need custom logic.
 - Low-memory systems (e.g., 4 GB RAM) may require `tinyllama` or page file adjustment.
+
+---
 
 ## Troubleshooting
 - **Port 11434 Conflict**: If `ollama serve` fails, ensure port 11434 is free:
@@ -230,8 +251,12 @@ pytest tests/
 - **Memory Issues**: Increase page file or use `tinyllama` if `phi3` fails.
 - **Parsing Errors**: Ensure Ollama server is running and the model is loaded before starting `main.py`.
 
+---
+
 ## Contributing
 Fork the repository, make changes, and submit a pull request. Issues and suggestions are welcome!
+
+---
 
 ## License
 MIT License (feel free to modify).
