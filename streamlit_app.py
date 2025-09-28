@@ -4,6 +4,13 @@ Tiny Streamlit UI for the Local Web Agent.
 Run: streamlit run streamlit_app.py
 """
 
+import asyncio
+import sys
+
+# Fix for Windows + Streamlit + Playwright NotImplementedError
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+
 import streamlit as st
 from agent.orchestrator import Orchestrator
 
@@ -23,9 +30,19 @@ if run_btn and instr.strip():
     with st.spinner("Executing..."):
         res = orch.run(instr.strip())
     st.success("Done")
-    st.json(res)
 
     if "actions" in res:
         st.markdown("### Actions log")
-        for a in res["actions"]:
-            st.write(a)
+        for idx, a in enumerate(res["actions"], 1):
+            st.write(f"### Action {idx}")
+            st.write(f"**Type:** {a.get('action', '')}")
+            st.write(f"**Engine:** {a.get('engine', '')}")
+            results = a.get("results", [])
+            if results:
+                st.markdown("**Results:**")
+                for i, result in enumerate(results[:5], 1):
+                    st.write(f"{i}. {result}")
+            else:
+                st.write("No results found.")
+    else:
+        st.write("No actions to display.")

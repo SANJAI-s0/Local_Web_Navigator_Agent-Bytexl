@@ -3,12 +3,14 @@
 Orchestrator: glue code connecting the Planner, BrowserController and Memory.
 """
 
+
 from .planner import Planner
 from .browser_controller import BrowserController
 from .memory import Memory
 from typing import Dict, Any
 import time
 import traceback
+
 
 class Orchestrator:
     def __init__(self, headless: bool = True, model_path: str = None, db_path: str = None):
@@ -45,10 +47,8 @@ class Orchestrator:
                         p = self.browser.screenshot(path=path)
                         results["actions"].append({"action": "screenshot", "path": p})
                     else:
-                        # unknown action - store raw
                         results["actions"].append({"action": "unknown", "raw": action})
                 except Exception as e:
-                    # per-action error handling: record and continue
                     results["actions"].append({"action": typ, "error": str(e), "trace": traceback.format_exc()})
                 time.sleep(0.3)
         except Exception as e:

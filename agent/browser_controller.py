@@ -5,7 +5,7 @@ Designed to run locally on Windows.
 
 Features:
 - Start/stop browser safely
-- Google/DuckDuckGo search
+- Google/DuckDuckGo/Flipkart search
 - Safe navigation, extraction, and actions
 - Lightweight error handling and logging
 """
@@ -64,13 +64,28 @@ class BrowserController:
         Perform a web search (DuckDuckGo preferred, Google may block).
         Returns: list of {title, url, snippet}.
         """
-        url = f"https://www.google.com/search?q={query}" if engine.lower() == "google" else f"https://duckduckgo.com/?q={query}"
+        url = f"https://duckduckgo.com/?q={query}" if engine.lower() == "duckduckgo" else f"https://www.google.com/search?q={query}"
         if not self.goto(url):
             return []
 
         results = []
         try:
-            if engine.lower() == "google":
+            if engine.lower() == "duckduckgo":
+                containers = self.page.query_selector_all("div.results--main div.result")
+                count = 0
+                for c in containers:
+                    if count >= max_results:
+                        break
+                    link = c.query_selector("a.result__a")
+                    snippet_el = c.query_selector("a.result__snippet") or c.query_selector("div.result__snippet")
+                    results.append({
+                        "title": link.inner_text() if link else "",
+                        "url": link.get_attribute("href") if link else "",
+                        "snippet": snippet_el.inner_text() if snippet_el else ""
+                    })
+                    count += 1
+
+            elif engine.lower() == "google":
                 containers = self.page.query_selector_all("div.g")
                 for c in containers[:max_results]:
                     title = c.query_selector("h3")
@@ -81,20 +96,6 @@ class BrowserController:
                         "url": link.get_attribute("href") if link else None,
                         "snippet": snippet.inner_text() if snippet else ""
                     })
-            else:
-                containers = self.page.query_selector_all("div.result") or self.page.query_selector_all("a.result__a")
-                count = 0
-                for c in containers:
-                    if count >= max_results:
-                        break
-                    link = c.query_selector("a.result__a") or c
-                    snippet_el = c.query_selector("a.result__snippet") or c.query_selector("div.result__snippet")
-                    results.append({
-                        "title": link.inner_text() if link else None,
-                        "url": link.get_attribute("href") if link else None,
-                        "snippet": snippet_el.inner_text() if snippet_el else ""
-                    })
-                    count += 1
         except Exception as e:
             print(f"[Error] search(): {e}")
 
@@ -103,8 +104,12 @@ class BrowserController:
     def extract_text(self, selector: str) -> List[str]:
         """Extract inner text of elements matching a selector."""
         try:
+            self.page.wait_for_selector(selector, timeout=5000)
             elements = self.page.query_selector_all(selector)
-            return [e.inner_text() for e in elements]
+            print(f"[Debug] Found {len(elements)} elements for selector '{selector}'")
+            texts = [e.inner_text() for e in elements]
+            print(f"[Debug] Extracted texts sample: {texts[:5]}")
+            return texts
         except Exception as e:
             print(f"[Error] extract_text({selector}): {e}")
             return []
