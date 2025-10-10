@@ -29,16 +29,23 @@ Here are the easiest ways to get started with MiniSearch. Pick the one that suit
 **Option 1** - Use [MiniSearch's Docker Image](https://github.com/felladrin/MiniSearch/pkgs/container/minisearch) by running in your terminal:
 
 ```bash
-ollama pull <model>
+docker run -p 7860:7860 ghcr.io/felladrin/minisearch:main
 ```
 
-```powershell
-$env:OLLAMA_HOST="127.0.0.1:11435"
-ollama serve
+**Option 2** - Add MiniSearch's Docker Image to your existing Docker Compose file:
+
+```yaml
+services:
+  minisearch:
+    image: ghcr.io/felladrin/minisearch:main
+    ports:
+      - "7860:7860"
 ```
 
-3. Download the appropriate model based on your RAM:
+**Option 3** - Build from source by [downloading the repository files](https://github.com/felladrin/MiniSearch/archive/refs/heads/main.zip) and running:
 
+<<<<<<< HEAD
+=======
 - For 4GB RAM: `ollama run tinyllama`
 - For 8GB+ RAM: `ollama run phi3`
 
@@ -48,6 +55,17 @@ ollama serve
 - Set custom page file size:
   - Initial: 8000 MB
   - Maximum: 16000 MB
+
+```bash
+Makedir data #In the root folder only if not available
+```
+(If and create memory.json after creating data folder)
+**In memory.json**: Inside the memory.json file paste this
+```bash
+{
+  "tasks": []
+}
+```
 
 ### Step 6: Run the Application
 ```powershell
@@ -63,6 +81,7 @@ python -m pytest tests/
 ---
 
 ## Project Structure
+>>>>>>> 2e3187d58043ac7fdbeca89c7345be2cd4d9d260
 ```bash
 docker compose -f docker-compose.production.yml up --build
 ```
