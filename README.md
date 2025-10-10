@@ -90,7 +90,7 @@ ollama serve
 ```powershell
 .\.venv\Scripts\activate
 $env:OLLAMA_HOST="127.0.0.1:11435"
-python webagent\main.py
+python -m webagent.main
 ```
 
 ### Step 7: Run Tests (Optional)
@@ -122,10 +122,48 @@ Bytexplore/
 
 Enter commands like:
 
-```text
-"search for laptops under 50k and list top 5"
-"extract headlines from example.com"
-```
+**Basic search commands:**
+"Search for laptops under 50000 INR"
+"Find best smartphones in 2025"
+"Look for latest programming books"
+
+**E-commerce specific:**
+"Search for wireless headphones on Amazon and list top 5 results"
+"Find best deals on smart watches under 10000 INR"
+"Show me the latest deals on gaming laptops"
+
+**Information extraction:**
+"Extract the top 5 news headlines from timesofindia.com"
+"Get the latest technology news from example.com"
+"Find and list the main points from Wikipedia's AI article"
+
+**Form filling tasks:**
+"Fill the contact form on example.com with my details"
+"Search for Python programming courses and fill the inquiry form"
+
+**Multi-step commands:**
+"Search for budget smartphones, extract their prices and save to CSV"
+"Find laptop deals, list specifications and export to JSON"
+
+**Voice command examples:**
+"Hey, search for best budget smartphones"
+"Find me deals on wireless earbuds"
+
+**Technical searches:**
+"Search for latest AI research papers"
+"Find information about machine learning algorithms"
+
+**Comparison tasks:**
+"Compare prices of iPhone 15 and Samsung Galaxy S23"
+"Show me different models of smart TVs with their specifications"
+
+**Local service searches:**
+"Find best restaurants near me"
+"Search for electronics repair shops in Bangalore"
+
+**Educational queries:**
+"Find online courses for data science"
+"Search for best programming tutorials for beginners"
 
 View results in GUI or check output files:
 
