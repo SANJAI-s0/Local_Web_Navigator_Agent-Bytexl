@@ -91,6 +91,17 @@ ollama serve
   - Initial: 8000 MB
   - Maximum: 16000 MB
 
+```bash
+Makedir data #In the root folder only if not available
+```
+(If and create memory.json after creating data folder)
+**In memory.json**: Inside the memory.json file paste this
+```bash
+{
+  "tasks": []
+}
+```
+
 ### Step 6: Run the Application
 ```powershell
 .\.venv\Scripts\activate
