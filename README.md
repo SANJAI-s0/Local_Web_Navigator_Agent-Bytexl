@@ -10,11 +10,11 @@ This agent allows users to input commands like "search for laptops under 50k and
 
 ### Core Features
 
-- **Instruction Parsing**: Uses Ollama (local LLM) to break down commands into actionable steps
-- **Browser Control**: Automates headless Chrome via Playwright for navigation, typing, form submission, and data extraction
-- **Task Execution**: Supports multi-step tasks like searching, extracting results, and exporting data
-- **Output**: Displays results in a GUI and exports to `results.json` and `results.csv`
-- **Local Setup**: Runs offline after setup (internet needed for web tasks and initial model download)
+- **Instruction Parsing**: Uses Ollama (local LLM) to break down commands into actionable steps.
+- **Browser Control**: Automates headless Chrome via Playwright for navigation, typing, form submission, and data extraction.
+- **Task Execution**: Supports multi-step tasks like searching, extracting results, and exporting data.
+- **Output**: Displays results in a GUI and exports to `results.json` and `results.csv`.
+- **Local Setup**: Runs offline after setup (internet needed for web tasks and initial model download).
 
 ### Additional Features
 
