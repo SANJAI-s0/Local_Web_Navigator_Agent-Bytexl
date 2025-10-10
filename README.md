@@ -6,23 +6,23 @@ An AI-powered web navigation agent that interprets natural language instructions
 
 ## Project Overview
 
-This agent allows users to input commands like "search for laptops under 50k and list top 5," and it handles navigation, data extraction, and output generation without requiring internet connectivity beyond the initial setup and web tasks. Task history is stored in `memory.json` for task chaining, replacing the earlier SQLite database approach.
+This agent allows users to input commands like "search for laptops under 50k and list top 5," and it handles navigation, data extraction, and output generation. The interface is now a web-based application using Flask, accessible via a browser, replacing the previous Tkinter GUI. Task history is stored in `memory.json` for task chaining, replacing the earlier SQLite database approach.
 
 ### Core Features
 
 - **Instruction Parsing**: Uses Ollama (local LLM) to break down commands into actionable steps.
 - **Browser Control**: Automates headless Chrome via Playwright for navigation, typing, form submission, and data extraction.
 - **Task Execution**: Supports multi-step tasks like searching, extracting results, and exporting data.
-- **Output**: Displays results in a GUI and exports to `results.json` and `results.csv`.
-- **Local Setup**: Runs offline after setup (internet needed for web tasks and initial model download).
+- **Output**: Displays results in a web interface and exports to `results.json` and `results.csv`.
+- **Local Setup**: Runs offline after setup (internet needed for web tasks and initial model download); the Flask app runs locally on port 5000.
 
 ### Additional Features
 
 - Multi-step reasoning and task chaining using `memory.json`
 - Error handling with retry logic
-- Simple GUI (Tkinter) for user interaction
+- Web-based UI (Flask) for user interaction, accessible at `http://localhost:5000`
 - Voice input support (requires microphone and internet for speech recognition)
-- Compatible with Python 3.10+ (tested on 3.12.8)
+- Compatible with Python 3.10+ (tested on 3.12.8 with Flask 3.0.3)
 
 ---
 
@@ -31,9 +31,10 @@ This agent allows users to input commands like "search for laptops under 50k and
 - **Operating System**: Windows 11 (tested on Asus Vivobook X1500EA)
 - **Python**: Version 3.10 or higher (recommended 3.12.8)
 - **Ollama**: Version 0.12.3 or later (from [ollama.ai](https://ollama.ai))
+- **Flask**: Version 3.0.3 (for web interface)
 - **Memory**: Minimum 4 GB RAM (8 GB recommended)
 - **Storage**: ~10 GB free space for models and dependencies
-- **Internet**: Required for initial setup, model download, and web tasks
+- **Internet**: Required for initial setup, model download, web tasks, and Flask server
 - **Microphone**: Optional, for voice input (requires PyAudio and portaudio dependencies)
 
 ---
@@ -68,6 +69,10 @@ pip install pyaudio
 
 1. Download and install Ollama from [ollama.ai](https://ollama.ai)
 2. Start the Ollama server on port 11435:
+
+```bash
+ollama pull <model>
+```
 
 ```powershell
 $env:OLLAMA_HOST="127.0.0.1:11435"
@@ -107,15 +112,18 @@ Bytexplore/
 │   ├── __init__.py
 │   ├── agent.py
 │   ├── browser_controller.py
-│   └── main.py
-├── tests/
-│   ├── test_agent.py
-│   └── test_browser_controller.py
+│   ├── main.py
+│   └── templates/
+│       └── index.html  # Flask HTML template
+├── data/
+│   ├── memory.json
+│   ├── results.json
+│   └── results.csv
 ├── requirements.txt
 ├── README.md
 └── .gitignore
 ```
-
+Search. 
 ---
 
 ## Usage Examples
@@ -172,22 +180,21 @@ View results in GUI or check output files:
 - `memory.json` - Task history
 
 ---
-
 ## Customization Options
 
 - **Model Selection**: Modify `agent.py` to use different models based on system specs
 - **Browser Actions**: Extend `browser_controller.py` for additional websites
-- **UI Modifications**: Customize `main.py` for different interface layouts
-
+- **UI Modifications**: Customize `templates/index.html` for different interface layouts or add static CSS/JS in a `static` folder
 ---
-
+Read me.
 ## Troubleshooting
 
 | Issue | Solution |
 |--------|-----------|
-| **Port Conflict** | If Ollama fails to start, check if port 11435 is already in use |
+| **Port Conflict** | If Ollama fails to start, check if port 11435 is in use; for Flask, ensure port 5000 is free |
 | **Memory Issues** | Use `tinyllama` instead of `phi3` on low-memory systems |
 | **Voice Input Errors** | Ensure microphone is properly configured and internet is available |
+| **Flask Not Loading** | Verify `templates/index.html` exists and dependencies are installed |
 
 ---
 
