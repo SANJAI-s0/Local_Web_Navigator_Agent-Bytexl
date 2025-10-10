@@ -4,3 +4,6 @@ speechrecognition==3.10.0
 pyaudio==0.2.14  # For voice; requires portaudio
 pytest==8.3.3  # For tests
 psutil==5.9.8  # For system specs
+flask==3.0.3
+werkzeug==3.0.3
+jinja2==3.1.4

@@ -1,12 +1,4 @@
 # Empty init file to make webagent a package
-"""
-Web Navigator AI Agent package
-
-This package contains the core components for the AI-powered web navigation agent:
-- agent: Core agent logic and instruction processing
-- browser_controller: Browser automation functionality
-"""
-
 from .agent import WebAgent
 from .browser_controller import BrowserController
 
