@@ -1,6 +1,6 @@
-ollama
-playwright
-speechrecognition
-pyttsx3
-pytest
-pytest-mock
+ollama==0.1.7
+playwright==1.44.0
+speechrecognition==3.10.0
+pyaudio==0.2.14  # For voice; requires portaudio
+pytest==8.3.3  # For tests
+psutil==5.9.8  # For system specs
