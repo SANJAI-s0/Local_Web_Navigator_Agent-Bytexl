@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BYTEXPLORE</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>BYTEXPLORE</h1>
+
+        <div class="input-section">
+            <input type="text" id="instruction" placeholder="Enter instruction...">
+            <button onclick="executeCommand()">Execute</button>
+            <button onclick="startVoiceInput()">Voice Input</button>
+        </div>
+
+        <div class="output-section">
+            <h2>Output:</h2>
+            <pre id="output"></pre>
+        </div>
+    </div>
+
+    <script>
+        async function executeCommand() {
+            const instruction = document.getElementById('instruction').value;
+            const output = document.getElementById('output');
+
+            output.textContent = `Processing: ${instruction}\n`;
+
+            try {
+                const response = await fetch('/execute', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ instruction })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    output.textContent += `Plan: ${JSON.stringify(data.plan, null, 2)}\n`;
+                    output.textContent += `Results: ${JSON.stringify(data.results, null, 2)}\n`;
+                } else {
+                    output.textContent += `Error: ${data.error}\n`;
+                }
+            } catch (error) {
+                output.textContent += `Error: ${error.message}\n`;
+            }
+        }
+
+        function startVoiceInput() {
+            alert('Voice input not implemented yet');
+        }
+    </script>
+</body>
+</html>
