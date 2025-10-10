@@ -1,0 +1,7 @@
+name: On Push To Main
+on:
+  push:
+    branches: ["main"]
+jobs:
+  test-lint-ping:
+    uses: ./.github/workflows/reusable-test-lint-ping.yml
