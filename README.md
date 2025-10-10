@@ -44,42 +44,6 @@ services:
 
 **Option 3** - Build from source by [downloading the repository files](https://github.com/felladrin/MiniSearch/archive/refs/heads/main.zip) and running:
 
-<<<<<<< HEAD
-=======
-- For 4GB RAM: `ollama run tinyllama`
-- For 8GB+ RAM: `ollama run phi3`
-
-### Step 5: Adjust Virtual Memory (For Low RAM Systems)
-
-- Open System Properties: `sysdm.cpl`
-- Set custom page file size:
-  - Initial: 8000 MB
-  - Maximum: 16000 MB
-
-```bash
-Makedir data #In the root folder only if not available
-```
-(If and create memory.json after creating data folder)
-**In memory.json**: Inside the memory.json file paste this
-```bash
-{
-  "tasks": []
-}
-```
-
-### Step 6: Run the Application
-```powershell
-.\.venv\Scripts\activate
-python -m webagent.main
-```
-
-### Step 7: Run Tests (Optional)
-```powershell
-python -m pytest tests/
-```
-
----
-
 ## Project Structure
 >>>>>>> 2e3187d58043ac7fdbeca89c7345be2cd4d9d260
 ```bash
