@@ -94,7 +94,6 @@ ollama serve
 ### Step 6: Run the Application
 ```powershell
 .\.venv\Scripts\activate
-$env:OLLAMA_HOST="127.0.0.1:11435"
 python -m webagent.main
 ```
 

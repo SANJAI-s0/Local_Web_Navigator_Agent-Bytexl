@@ -1,3 +1,4 @@
+# webagent/agent.py
 import json
 import ollama
 import platform
@@ -32,7 +33,7 @@ class WebAgent:
             self.model = model
         self.memory_file = 'data/memory.json'
         self.memory = self._load_memory()
-        self.browser = BrowserController(headless=True)  # Headless for background execution
+        self.browser = BrowserController(headless=True)  # Set headless=True here
 
     def _load_memory(self):
         try:

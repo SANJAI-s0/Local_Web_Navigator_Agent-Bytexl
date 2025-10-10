@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 from webagent.agent import WebAgent
 
 app = Flask(__name__)
-agent = WebAgent(headless=True)
+agent = WebAgent()  # Removed headless=True
 
 @app.route('/', methods=['GET', 'POST'])
 def search():
